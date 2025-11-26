@@ -1,27 +1,23 @@
 import xml.etree.ElementTree as ET
 
-# Input XML file
 xml_file = "assets_map.xml"
-
-# Output TXT file
 txt_file = "Containers.txt"
 
-# Parse XML
-tree = ET.parse(xml_file)
-root = tree.getroot()
-
-# Use a set to avoid duplicates
 containers = set()
 
-for asset in root.findall("Asset"):
-    container = asset.find("Container").text if asset.find("Container") is not None else None
-    if container:
-        containers.add(container)
+# Iteratively parse the XML
+for event, elem in ET.iterparse(xml_file, events=("end",)):
+    if elem.tag == "Asset":
+        container_elem = elem.find("Container")
+        if container_elem is not None and container_elem.text:
+            containers.add(container_elem.text.strip())
 
-# Sort for consistency
+        # Clear element from memory
+        elem.clear()
+
+# Sort and save
 unique_containers = sorted(containers)
 
-# Write to text file (one per line)
 with open(txt_file, "w", encoding="utf-8") as f:
     f.write("\n".join(unique_containers))
 
