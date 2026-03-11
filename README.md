@@ -47,7 +47,7 @@ Some reported numbers might be a bit skewed, due to HoYo consistency.
 | .bytes          | 10,990      | +1,538      |
 | .compute        | 5           | +5 (NEW)    |
 | .controller     | 72          | +72 (NEW)   |
-| .cs             | 3           | +3          |
+| .cs             | 3           | +3 (NEW)    |
 | .csv            | 1           | 0           |
 | .exr            | 941         | +941 (NEW)  |
 | .fbx            | 47,774      | +9,348      |
