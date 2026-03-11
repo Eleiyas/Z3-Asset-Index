@@ -1,6 +1,6 @@
-# Z3 Asset Map
+# Z3 Asset Index
 
-A project to rebuild Z3's internal file structure, so that Escartem's [AnimeStudio](https://github.com/Escartem/AnimeStudio) can extract assets "byContainer".
+A project to rebuild Z3's internal file structure, so that [Escartem](https://github.com/Escartem)'s [AnimeStudio](https://github.com/Escartem/AnimeStudio) can extract assets "byContainer".
 
 Unlike a specific turn-based game, which has the internal containers kept within the blocks, meaning there's no real need for an Asset-Index, Z3 instead hashes the containers with xxhash64, which is what leads to AnimeStudio just dumping thousands of files into folders named by the typeID of the file (Texture2D/Mesh/Animator, etc).
 
@@ -8,54 +8,71 @@ I wanted to be able to find assets, especially Texture2D, more easily by having 
 
 ## Generation
 
-- Used AnimeStudio to generate a full assets_map of the game.
-- Extracted all valid containerIDs from the assets_map.
-- Extracted various lists of files based on typeID from the assets_map.
-- Extracted all visible strings from /Data and /FileCFG using a specific data repository.
-- Extracted all strings from MonoBehaviours using my modified fork of AnimeStudio.
+- Used AnimeStudio to generate a full asset_map of the game.
+- Extracted all valid containerIDs from the asset_map.
+- Extracted various lists of files based on typeID from the asset_map.
+- Extracted all visible strings from ZenlessData /Data and /FileCFG.
+- Scraped strings from MonoBehaviour files using my modified fork of AnimeStudio.
 - Ran trillions of potential path/file combinations through a brute-forcing script.
 - Ran the game with Frida hooking into certain RVAs that deal with hashing and texture loading.
+- Created several Injector DLLs to try and scrape strings from memory and certain RVAs.
 
 ## Progress
 
-Some reported numbers from the AssetMap might be a bit skewed, due to the inclusion of files like resources.assets.
+Some reported numbers from the AssetMap might be a bit skewed, due to the inclusion of files like resources.assets and many duplicates.
 
-| typeID        | File Types                                                                                                             | AssetMap Total | Remaining | % Done |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------- | -------------- | --------- | ------ |
-| AnimationClip | .fbx, .anim                                                                                                            | 27,171         | 10,415    | 61.67% |
-| Animator      | .fbx, .prefab                                                                                                          | 5,749          | 2,533     | 55.95% |
-| Material      | .mat                                                                                                                   | 41,688         | 22,109    | 46.95% |
-| Mesh          | .fbx, .mesh                                                                                                            | 97,561         | 67,698    | 30.61% |
-| MonoBehaviour | .asset, .playable, .prefab                                                                                             | 95,638         | 29,985    | 68.65% |
-| TextAsset     | .bytes, .csv, .html, .json, .txt                                                                                       | 14,883         | 4,530     | 69.57% |
-| Texture2D     | .jpg, .png, .psd, .tga                                                                                                 | 49,658         | 11,685    | 76.47% |
-| TOTAL         | .anim, .asset, .bytes, .csv, .fbx, .html, .jpg, .json, .mat, .mesh,<br />.playable, .png, .prefab, .psd, .tga, .txt | 332,348        | 148,955   | 55.19% |
+- Note: Multiple Unity files like .prefab, .playable, .asset, and .unity can encompass multiple AnimeStudio asset types.
 
-### AssetMap
+### By Type (Not Including Hidden)
+| typeID                  | AssetMap Total | Remaining   | % Indexed | Update Diff |
+| ----------------------- | -------------- | ------------| --------- |-------------|
+| AnimationClip           | 28,170         | 8,315       | 70.49%    | +8.82%      |
+| Animator                | 7,638          | 2,166       | 71.65%    | +15.70%     |
+| Material                | 56,645         | 26,929      | 52.47%    | +5.52%      |
+| Mesh                    | 72,720         | 33,420      | 54.05%    | +23.44%     |
+| MonoBehaviour           | 299,455        | 83,277      | 72.20%    | +3.55%      |
+| TextAsset               | 20,913         | 8,556       | 59.09%    | -10.48%     |
+| Texture2D               | 62,647         | 14,513      | 76.84%    | +0.37%      |
+| TOTAL                   | 548,188        | 177,176     | 67.68%    | +12.49%     |
 
-The values in () are for files with duped file extensions (.asset.asset, .png.png, .tga.tga).
+### By Extension
 
-| Extension       | Amount      |
-| --------------- | ----------- |
-| .anim           | 1,176       |
-| .asset          | 49,993 (+1) |
-| .bytes          | 9,452       |
-| .csv            | 1           |
-| .fbx            | 38,426      |
-| .html           | 3           |
-| .jpg            | 14          |
-| .json           | 556         |
-| .mat            | 19,408      |
-| .mesh           | 5,274       |
-| .otf            | 7           |
-| .playable       | 310         |
-| .png            | 18,691 (+6) |
-| .prefab         | 31,572      |
-| .psd            | 1,290       |
-| .shadervariants | 177         |
-| .tga            | 18,748 (+2) |
-| .txt            | 385         |
-| TOTAL           | 195,483     |
+Some reported numbers might be a bit skewed, due to HoYo consistency.
+
+| Extension       | Amount      | Update Diff |
+| --------------- | ----------- |-------------|
+| .amr            | 2           | +2 (NEW)    |
+| .anim           | 1,365       | +189        |
+| .asset          | 178,230     | +128,237    |
+| .bytes          | 10,990      | +1,538      |
+| .compute        | 5           | +5 (NEW)    |
+| .controller     | 72          | +72 (NEW)   |
+| .cs             | 3           | +3          |
+| .csv            | 1           | 0           |
+| .exr            | 941         | +941 (NEW)  |
+| .fbx            | 47,774      | +9,348      |
+| .hdr            | 5           | +5 (NEW)    |
+| .he             | 606         | +606 (NEW)  |
+| .html           | 3           | 0           |
+| .jpg            | 18          | +4          |
+| .json           | 659         | +103        |
+| .mask           | 3           | +3 (NEW)    |
+| .mat            | 26,211      | +6,803      |
+| .mesh           | 6,720       | +1,446      |
+| .otf            | 7           | 0           |
+| .physicMaterial | 2           | +2 (NEW)    |
+| .playable       | 2,996       | +2,686      |
+| .png            | 22,819      | +4,128      |
+| .prefab         | 46,071      | +14,499     |
+| .psd            | 1,452       | +162        |
+| .shader         | 10          | +10 (NEW)   |
+| .shadervariants | 394         | +217        |
+| .unity          | 40          | +40 (NEW)   |
+| .tga            | 21,426      | +2,678      |
+| .tif            | 2           | +2 (NEW)    |
+| .ttf            | 4           | +4 (NEW)    |
+| .txt            | 776         | +391        |
+| TOTAL           | 369,607     | +174,124    |
 
 ## Issues
 
@@ -71,10 +88,12 @@ I have been unable to find the paths for these files:
 | Agent Mindscape Images                      | ~150   |
 | All Live2D spines/atlases/skeletons         | A lot  |
 
-## Credits
+## Thanks
 
-* Escartem: Anime studio and helping with Monos and fixes.
-* yarik0chka: Some files.
-* Dimbreath: Z3 Data
-* Hrothgar: Assisting where possible.
-* undefined9071: Help with Monos.
+* [Escartem](https://github.com/Escartem)
+* [yarik0chka](https://github.com/yarik0chka)
+* [Dimbreath](https://github.com/Dimbreath)
+* [hrothgar234567](https://github.com/hrothgar234567)
+* [undefined9071](https://github.com/undefined9071)
+* Nullable
+* [Razmoth](https://github.com/Razmoth)
