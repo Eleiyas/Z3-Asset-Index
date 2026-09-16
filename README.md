@@ -82,13 +82,13 @@ As I only have a couple of usable RVAs to try and hook into, many files simply g
 
 I have been unable to find the paths for these files:
 
-| Asset Type                                  | Amount     |
-| ------------------------------------------- | ---------- |
-| Story Comics                                | ~1,700     |
-| ~~Weapon Textures ~~ [FOUND]               | ~~~300~~   |
-| Various EFF/VX/Mask/HLOD textures/materials | 2000+      |
-| ~~Agent Mindscape Images ~~ [FOUND]        | ~~~150 ~~ |
-| All Live2D spines/atlases/skeletons         | A lot      |
+| Asset Type                                  | Amount |
+| ------------------------------------------- | ------ |
+| Story Comics                                | ~1,700 |
+| Various EFF/VX/Mask/HLOD textures/materials | 2000+  |
+| All Live2D spines/atlases/skeletons         | A lot  |
+
+Agent Mindscape Textures and W-Engine Textures found as of April 12th 2026!
 
 ## Thanks
 
