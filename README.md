@@ -24,55 +24,57 @@ Some reported numbers from the AssetMap might be a bit skewed, due to the inclus
 - Note: Multiple Unity files like .prefab, .playable, .asset, and .unity can encompass multiple AnimeStudio asset types.
 
 ### By Type (Not Including Hidden)
-| typeID                  | AssetMap Total | Remaining   | % Indexed | Update Diff |
-| ----------------------- | -------------- | ------------| --------- |-------------|
-| AnimationClip           | 28,170         | 8,315       | 70.49%    | +8.82%      |
-| Animator                | 7,638          | 2,166       | 71.65%    | +15.70%     |
-| Material                | 56,645         | 26,929      | 52.47%    | +5.52%      |
-| Mesh                    | 72,720         | 33,420      | 54.05%    | +23.44%     |
-| MonoBehaviour           | 299,455        | 83,277      | 72.20%    | +3.55%      |
-| TextAsset               | 20,913         | 8,556       | 59.09%    | -10.48%     |
-| Texture2D               | 62,647         | 14,513      | 76.84%    | +0.37%      |
-| TOTAL                   | 548,188        | 177,176     | 67.68%    | +12.49%     |
+
+| typeID        | AssetMap Total | Remaining | % Indexed | Update Diff |
+| ------------- | -------------- | --------- | --------- | ----------- |
+| AnimationClip | 28,170         | 8,315     | 70.49%    | +8.82%      |
+| Animator      | 7,638          | 2,166     | 71.65%    | +15.70%     |
+| Material      | 56,645         | 26,929    | 52.47%    | +5.52%      |
+| Mesh          | 72,720         | 33,420    | 54.05%    | +23.44%     |
+| MonoBehaviour | 299,455        | 83,277    | 72.20%    | +3.55%      |
+| TextAsset     | 20,913         | 8,556     | 59.09%    | -10.48%     |
+| Texture2D     | 62,647         | 14,513    | 76.84%    | +0.37%      |
+| TOTAL         | 548,188        | 177,176   | 67.68%    | +12.49%     |
 
 ### By Extension
 
 Some reported numbers might be a bit skewed, due to HoYo consistency.
 
-| Extension       | Amount      | Update Diff |
-| --------------- | ----------- |-------------|
-| .amr            | 2           | +2 (NEW)    |
-| .anim           | 1,365       | +189        |
-| .asset          | 178,230     | +128,237    |
-| .bytes          | 10,990      | +1,538      |
-| .compute        | 5           | +5 (NEW)    |
-| .controller     | 72          | +72 (NEW)   |
-| .cs             | 3           | +3 (NEW)    |
-| .csv            | 1           | 0           |
-| .exr            | 941         | +941 (NEW)  |
-| .fbx            | 47,774      | +9,348      |
-| .hdr            | 5           | +5 (NEW)    |
-| .he             | 606         | +606 (NEW)  |
-| .html           | 3           | 0           |
-| .jpg            | 18          | +4          |
-| .json           | 659         | +103        |
-| .mask           | 3           | +3 (NEW)    |
-| .mat            | 26,211      | +6,803      |
-| .mesh           | 6,720       | +1,446      |
-| .otf            | 7           | 0           |
-| .physicMaterial | 2           | +2 (NEW)    |
-| .playable       | 2,996       | +2,686      |
-| .png            | 22,819      | +4,128      |
-| .prefab         | 46,071      | +14,499     |
-| .psd            | 1,452       | +162        |
-| .shader         | 10          | +10 (NEW)   |
-| .shadervariants | 394         | +217        |
-| .unity          | 40          | +40 (NEW)   |
-| .tga            | 21,426      | +2,678      |
-| .tif            | 2           | +2 (NEW)    |
-| .ttf            | 4           | +4 (NEW)    |
-| .txt            | 776         | +391        |
-| TOTAL           | 369,607     | +174,124    |
+| Extension       | Amount  | Update Diff |
+| --------------- | ------- | ----------- |
+| .amr            | 2       | +2 (NEW)    |
+| .anim           | 1,365   | +189        |
+| .asset          | 178,230 | +128,237    |
+| .bytes          | 10,990  | +1,538      |
+| .compute        | 5       | +5 (NEW)    |
+| .controller     | 72      | +72 (NEW)   |
+| .cs             | 3       | +3 (NEW)    |
+| .csv            | 1       | 0           |
+| .exr            | 941     | +941 (NEW)  |
+| .fbx            | 47,774  | +9,348      |
+| .hdr            | 5       | +5 (NEW)    |
+| .he             | 606     | +606 (NEW)  |
+| .html           | 3       | 0           |
+| .jpg            | 18      | +4          |
+| .json           | 659     | +103        |
+| .lbe            | 342     | +342 (NEW)  |
+| .mask           | 3       | +3 (NEW)    |
+| .mat            | 26,211  | +6,803      |
+| .mesh           | 6,720   | +1,446      |
+| .otf            | 7       | 0           |
+| .physicMaterial | 2       | +2 (NEW)    |
+| .playable       | 2,996   | +2,686      |
+| .png            | 22,819  | +4,128      |
+| .prefab         | 46,071  | +14,499     |
+| .psd            | 1,452   | +162        |
+| .shader         | 10      | +10 (NEW)   |
+| .shadervariants | 394     | +217        |
+| .unity          | 40      | +40 (NEW)   |
+| .tga            | 21,426  | +2,678      |
+| .tif            | 2       | +2 (NEW)    |
+| .ttf            | 4       | +4 (NEW)    |
+| .txt            | 776     | +391        |
+| TOTAL           | 369,607 | +174,124    |
 
 ## Issues
 
@@ -80,13 +82,13 @@ As I only have a couple of usable RVAs to try and hook into, many files simply g
 
 I have been unable to find the paths for these files:
 
-| Asset Type                                  | Amount |
-| ------------------------------------------- | ------ |
-| Story Comics                                | ~1,700 |
-| Weapon Textures                             | ~300   |
-| Various EFF/VX/Mask/HLOD textures/materials | 2000+  |
-| Agent Mindscape Images                      | ~150   |
-| All Live2D spines/atlases/skeletons         | A lot  |
+| Asset Type                                  | Amount     |
+| ------------------------------------------- | ---------- |
+| Story Comics                                | ~1,700     |
+| ~~Weapon Textures ~~ [FOUND]               | ~~~300~~   |
+| Various EFF/VX/Mask/HLOD textures/materials | 2000+      |
+| ~~Agent Mindscape Images ~~ [FOUND]        | ~~~150 ~~ |
+| All Live2D spines/atlases/skeletons         | A lot      |
 
 ## Thanks
 
